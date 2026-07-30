@@ -32,7 +32,7 @@ function populateUniversityDropdown() {
       mappings.map(item => (item["Foreign University Name"] || "").trim()).filter(u => u !== "")
     ),
   ].sort((a, b) => a.localeCompare(b));
-  uniSelect.innerHTML = `<option value="">--Select--</option>`;
+  uniSelect.innerHTML = `<option value="">All</option>`;
   universities.forEach(u => {
     const opt = document.createElement("option");
     opt.value = u;
@@ -50,7 +50,7 @@ function populateDepartmentDropdown() {
       mappings.map(item => (item["Department of Student"] || "").trim()).filter(d => d !== "")
     ),
   ].sort((a, b) => a.localeCompare(b));
-  deptSelect.innerHTML = `<option value="">--Select--</option>`;
+  deptSelect.innerHTML = `<option value="">All</option>`;
   departments.forEach(d => {
     const opt = document.createElement("option");
     opt.value = d;
@@ -68,7 +68,7 @@ function populateCountryDropdown() {
       mappings.map(item => (item["Country"] || "").trim()).filter(c => c !== "")
     ),
   ].sort((a, b) => a.localeCompare(b));
-  countrySelect.innerHTML = `<option value="">--Select--</option>`;
+  countrySelect.innerHTML = `<option value="">All</option>`;
   countries.forEach(c => {
     const opt = document.createElement("option");
     opt.value = c;
