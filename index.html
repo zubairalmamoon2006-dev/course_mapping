@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Semester Exchange Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -15,47 +15,124 @@
       <img src="images/ugac.jpg" alt="UGAC Logo" class="ugac-logo">
     </div>
     <div class="header-right">
-      <h2>Data Analytics and Visualization Team</h2>
+      <span class="header-text">Data Analytics and Visualization Team</span>
       <img src="images/dav.png" class="dav-logo" alt="DAV Logo">
     </div>
   </header>
 
-  <!-- MAIN SECTION -->
-  <main>
-    <section class="banner">
-      <div class="banner-overlay">
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <div class="hero-badge">IIT Bombay</div>
         <h1>Semester Exchange Portal</h1>
-        <button id="searchBtn">Search Course Mappings</button>
+        <p class="hero-subtitle">Find verified course mappings from students who've been there, done that</p>
+        <button id="searchBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:middle;">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          Search Course Mappings
+        </button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="content-section">
-      <div class="info-boxes">
-        <div class="info-box">Find verified course mappings to University of your choice</div>
-        <div class="info-box">No more hassles of getting the mapping right as your seniors have done it for you</div>
-        <div class="info-box">Find mapped courses appropriate for you and your department</div>
+  <!-- FEATURES SECTION -->
+  <section class="features">
+    <div class="features-container">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3>Verified Mappings</h3>
+        <p>Find verified course mappings to the university of your choice, approved by previous exchange students</p>
       </div>
 
-      <div class="instructions">
-        <h3>Instructions on using the Semester Exchange Portal</h3>
-        <ol>
-          <li>Click on the appropriate filter that you want to apply for your required course mappings</li>
-          <li>Multiple filters can be stacked on top of each other for highly selective mappings</li>
-          <li>The ‘Department’ field returns courses mapped by students of that department on previous semester exchanges</li>
-          <li>Course descriptions and credits will be displayed once the user clicks on their required course mapping</li>
-        </ol>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3>Senior Verified</h3>
+        <p>No more hassles of getting the mapping right — your seniors have done it for you</p>
       </div>
 
-      <p class="footer-note">
-        **The provided course mappings have been verified and used by previous students on semester exchange.
-        However, new mappings can also be discovered and used.
-      </p>
-    </section>
-  </main>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <h3>Department Specific</h3>
+        <p>Find mapped courses appropriate for you and your department with smart filters</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTIONS SECTION -->
+  <section class="instructions-section">
+    <div class="instructions-container">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Apply Filters</h4>
+            <p>Click on the appropriate filter that you want to apply for your required course mappings</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Stack Filters</h4>
+            <p>Multiple filters can be stacked on top of each other for highly selective mappings</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Browse Departments</h4>
+            <p>The Department field returns courses mapped by students of that department on previous exchanges</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>View Details</h4>
+            <p>Course descriptions and credits will be displayed once you click on your required course mapping</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTE SECTION -->
+  <section class="note-section">
+    <div class="note-container">
+      <div class="note-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; color:#3b82f6;">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <p>The provided course mappings have been verified and used by previous students on semester exchange. However, new mappings can also be discovered and used.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
-    Made by DAV Team, UGAC in collaboration with the ISIR
+    <div class="footer-content">
+      <span>Made by DAV Team, UGAC in collaboration with the ISIR</span>
+    </div>
   </footer>
 
   <script src="script.js"></script>
