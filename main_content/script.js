@@ -135,31 +135,25 @@ function setupAutocomplete() {
   });
 }
 
-// Export filtered results to CSV
-function exportToCSV() {
+// Export filtered results to Excel
+function exportToExcel() {
   const dataToExport = currentFiltered.length > 0 ? currentFiltered : mappings;
   if (dataToExport.length === 0) {
     alert("No data to export");
     return;
   }
-  const headers = ["S.No.", "IITB Course Code", "Department", "Foreign University", "Country", "Foreign Course Code"];
-  const rows = dataToExport.map((item, index) => [
-    index + 1,
-    item["IITB Course (code-name)"] || "NA",
-    item["Department of Student"] || "NA",
-    item["Foreign University Name"] || "NA",
-    item["Country"] || "NA",
-    item["Foreign Course (code-name)"] || "NA"
-  ]);
-  const csvContent = [headers, ...rows]
-    .map(row => row.map(cell => `"${cell}"`).join(","))
-    .join("\n");
-  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "course_mappings.csv";
-  link.click();
-  URL.revokeObjectURL(link.href);
+  const rows = dataToExport.map((item, index) => ({
+    "S.No.": index + 1,
+    "IITB Course Code": item["IITB Course (code-name)"] || "NA",
+    "Department": item["Department of Student"] || "NA",
+    "Foreign University": item["Foreign University Name"] || "NA",
+    "Country": item["Country"] || "NA",
+    "Foreign Course Code": item["Foreign Course (code-name)"] || "NA"
+  }));
+  const ws = XLSX.utils.json_to_sheet(rows);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Course Mappings");
+  XLSX.writeFile(wb, "course_mappings.xlsx");
 }
 
 // Render the main table with results (Serial Number included)
@@ -229,9 +223,9 @@ if (document.getElementById("resetBtn")) {
   });
 }
 
-// Export to CSV button handler
+// Export to Excel button handler
 if (document.getElementById("exportBtn")) {
-  document.getElementById("exportBtn").addEventListener("click", exportToCSV);
+  document.getElementById("exportBtn").addEventListener("click", exportToExcel);
 }
 
 // Restore previous filters & results on page load
