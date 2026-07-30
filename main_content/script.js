@@ -3,28 +3,12 @@ let mappings = [];
 let currentFiltered = [];
 let selectedCourses = [];
 
-// Dynamically update table headers to add Serial Number column
-function updateTableHeaders() {
-  const thead = document.querySelector("#results-table thead");
-  if (!thead) return;
-  const headerRow = thead.querySelector("tr");
-  if (!headerRow) return;
-
-  if (!headerRow.querySelector("th.sn-col")) {
-    const snTh = document.createElement("th");
-    snTh.className = "sn-col";
-    snTh.textContent = "S.No.";
-    headerRow.insertBefore(snTh, headerRow.firstChild);
-  }
-}
-
-// Load JSON dataset, populate dropdowns, update headers, restore filters
+// Load JSON dataset, populate dropdowns, restore filters
 fetch("overall_mappings.json")
   .then(res => res.json())
   .then(data => {
     mappings = data;
     populateDropdowns();
-    updateTableHeaders();
     restoreState();
     setupAutocomplete();
     renderRecentlyViewed();
@@ -267,7 +251,7 @@ function renderTable(filtered) {
   if (!filtered || filtered.length === 0) {
     if (thead) thead.style.display = "none";
     const row = document.createElement("tr");
-    row.innerHTML = `<td colspan="7" style="text-align:center; padding:20px; font-size:16px; color:#555;">No such mappings have been done by students from previous batches</td>`;
+    row.innerHTML = `<td colspan="6" style="text-align:center; padding:40px 20px; font-size:15px; color:#64748b;">No such mappings have been done by students from previous batches</td>`;
     tbody.appendChild(row);
     return;
   }

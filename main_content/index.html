@@ -1,83 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Course Mapping Portal</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Mapping Portal</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Course Mapping Portal IIT Bombay Exchange</h1>
-
-  <div class="filter-section">
-    <div class="filter-row">
-      
-      <div class="filter-item autocomplete-wrapper">
-        <label for="course">Course Code</label>
-        <input type="text" id="course" placeholder="Enter IITB Course Code" autocomplete="off" />
-        <div id="autocomplete-list" class="autocomplete-list"></div>
-      </div>
-      <div class="filter-item">
-        <label for="department">Department</label>
-        <select id="department">
-          <option value="">Loading...</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="filter-row">
-      <div class="filter-item">
-        <label for="country">Country</label>
-        <select id="country">
-          <option value="">Loading...</option>
-        </select>
-      </div>
-      <div class="filter-item">
-        <label for="university">Foreign University</label>
-        <select id="university">
-          <option value="">Loading...</option>
-        </select>
-      </div>
-    </div>
-    
-    <div class="filter-button">
-      <button id="backBtn">Return to Main Page</button>
-      <button id="submitBtn">Submit</button>
-      <button id="resetBtn">Reset Filters</button>
-      <button id="exportBtn">Export to Excel</button>
-    </div>
+  <div class="page-header">
+    <h1>Course Mapping Portal</h1>
+    <div class="subtitle">IIT Bombay Semester Exchange</div>
   </div>
 
-  <div id="results-section">
-    <div id="credit-calculator" style="display:none; text-align:center; margin:15px auto; padding:10px; background:#fff; width:90%; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-      <strong>Selected: </strong><span id="selected-count">0</span> courses |
-      <strong>IITB Credits: </strong><span id="total-iitb-credits">0</span> |
-      <strong>Foreign Credits: </strong><span id="total-foreign-credits">0</span>
+  <div class="container">
+    <div class="filter-section">
+      <div class="filter-row">
+        <div class="filter-item autocomplete-wrapper">
+          <label for="course">Course Code</label>
+          <input type="text" id="course" placeholder="e.g. CS 101" autocomplete="off" />
+          <div id="autocomplete-list" class="autocomplete-list"></div>
+        </div>
+        <div class="filter-item">
+          <label for="department">Department</label>
+          <select id="department">
+            <option value="">Loading...</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <div class="filter-item">
+          <label for="country">Country</label>
+          <select id="country">
+            <option value="">Loading...</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label for="university">Foreign University</label>
+          <select id="university">
+            <option value="">Loading...</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-button">
+        <button id="backBtn">Return to Main Page</button>
+        <button id="submitBtn">Submit</button>
+        <button id="resetBtn">Reset Filters</button>
+        <button id="exportBtn">Export to Excel</button>
+      </div>
     </div>
-    <table id="results-table">
-      <thead>
-        <tr>
-          <th>Select</th>
-          <th>IITB Course Code</th>
-          <th>Department</th>
-          <th>Foreign University</th>
-          <th>Country</th>
-          <th>Foreign Course Code</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Results injected by JS -->
-      </tbody>
-    </table>
-  </div>
 
-  <div id="bookmarks-section" style="display:none; width:90%; margin:20px auto; background:#fff; padding:15px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-    <h3 style="margin:0 0 10px 0; color:#2c3e50;">Bookmarked Courses</h3>
-    <div id="bookmarks-list"></div>
-  </div>
+    <div id="results-section">
+      <div id="credit-calculator">
+        <strong>Selected: </strong><span id="selected-count">0</span> courses &nbsp;|&nbsp;
+        <strong>IITB Credits: </strong><span id="total-iitb-credits">0</span> &nbsp;|&nbsp;
+        <strong>Foreign Credits: </strong><span id="total-foreign-credits">0</span>
+      </div>
+      <table id="results-table">
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>IITB Course Code</th>
+            <th>Department</th>
+            <th>Foreign University</th>
+            <th>Country</th>
+            <th>Foreign Course Code</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
 
-  <div id="recent-section" style="display:none; width:90%; margin:20px auto; background:#fff; padding:15px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-    <h3 style="margin:0 0 10px 0; color:#2c3e50;">Recently Viewed</h3>
-    <div id="recent-list"></div>
+    <div id="bookmarks-section">
+      <h3>Bookmarked Courses</h3>
+      <div id="bookmarks-list"></div>
+    </div>
+
+    <div id="recent-section">
+      <h3>Recently Viewed</h3>
+      <div id="recent-list"></div>
+    </div>
   </div>
 
   <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
