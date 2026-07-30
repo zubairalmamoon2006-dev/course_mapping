@@ -91,13 +91,16 @@ function populateCountryDropdown() {
 // Render the main table with results (Serial Number included)
 function renderTable(filtered) {
   const tbody = document.querySelector("#results-table tbody");
+  const thead = document.querySelector("#results-table thead");
   tbody.innerHTML = "";
   if (!filtered || filtered.length === 0) {
+    if (thead) thead.style.display = "none";
     const row = document.createElement("tr");
-    row.innerHTML = `<td colspan="6">No results found</td>`;
+    row.innerHTML = `<td colspan="6" style="text-align:center; padding:20px; font-size:16px; color:#555;">No such mappings have been done by students from previous batches</td>`;
     tbody.appendChild(row);
     return;
   }
+  if (thead) thead.style.display = "";
   filtered.forEach((item, index) => {
     const row = document.createElement("tr");
     row.innerHTML = `
