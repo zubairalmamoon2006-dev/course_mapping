@@ -398,7 +398,15 @@ if (window.location.pathname.includes("detail.html")) {
       };
       updateBtn();
       bookmarkBtn.addEventListener("click", () => {
-        toggleBookmark(mapping);
+        let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+        const code = mapping["IITB Course (code-name)"];
+        const exists = bookmarks.findIndex(b => b["IITB Course (code-name)"] === code);
+        if (exists >= 0) {
+          bookmarks.splice(exists, 1);
+        } else {
+          bookmarks.push(mapping);
+        }
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
         updateBtn();
       });
     }
