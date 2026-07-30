@@ -145,6 +145,58 @@ tr:hover {
   text-decoration: underline;
 }
 
+/* Recent and Bookmark items */
+.recent-item, .bookmark-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.recent-item:hover, .bookmark-item:hover {
+  background: #f5f5f5;
+}
+
+.remove-bookmark {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.remove-bookmark:hover {
+  background: #c0392b;
+}
+
+/* Checkbox styling */
+.course-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Bookmark button on detail page */
+#bookmarkBtn {
+  padding: 8px 20px;
+  background: #2c3e50;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+#bookmarkBtn:hover {
+  background: #1a242f;
+}
+
 /* ===================== */
 /* RESPONSIVE DESIGN FIX */
 /* ===================== */

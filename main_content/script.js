@@ -1,6 +1,7 @@
 // Store all course mapping entries
 let mappings = [];
 let currentFiltered = [];
+let selectedCourses = [];
 
 // Dynamically update table headers to add Serial Number column
 function updateTableHeaders() {
@@ -26,6 +27,8 @@ fetch("overall_mappings.json")
     updateTableHeaders();
     restoreState();
     setupAutocomplete();
+    renderRecentlyViewed();
+    renderBookmarks();
   })
   .catch(err => console.error("Error loading JSON file:", err));
 
@@ -156,31 +159,134 @@ function exportToExcel() {
   XLSX.writeFile(wb, "course_mappings.xlsx");
 }
 
+// Recently viewed functions
+function addToRecentlyViewed(item) {
+  let recent = JSON.parse(localStorage.getItem("recentlyViewed") || "[]");
+  recent = recent.filter(r => r["IITB Course (code-name)"] !== item["IITB Course (code-name)"]);
+  recent.unshift(item);
+  if (recent.length > 5) recent = recent.slice(0, 5);
+  localStorage.setItem("recentlyViewed", JSON.stringify(recent));
+  renderRecentlyViewed();
+}
+
+function renderRecentlyViewed() {
+  const list = document.getElementById("recent-list");
+  const section = document.getElementById("recent-section");
+  if (!list || !section) return;
+  const recent = JSON.parse(localStorage.getItem("recentlyViewed") || "[]");
+  if (recent.length === 0) {
+    section.style.display = "none";
+    return;
+  }
+  section.style.display = "block";
+  list.innerHTML = recent.map(item => `
+    <div class="recent-item" onclick="viewCourse('${(item["IITB Course (code-name)"] || "").replace(/'/g, "\\'")}')">
+      <span>${item["IITB Course (code-name)"] || "NA"}</span>
+      <span style="color:#888; font-size:12px;">${item["Foreign University Name"] || "NA"}</span>
+    </div>
+  `).join("");
+}
+
+function viewCourse(courseCode) {
+  const item = mappings.find(m => m["IITB Course (code-name)"] === courseCode);
+  if (item) {
+    localStorage.setItem("selectedMapping", JSON.stringify(item));
+    window.location.href = "detail.html";
+  }
+}
+
+// Bookmark functions
+function toggleBookmark(item, event) {
+  if (event) event.stopPropagation();
+  let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+  const code = item["IITB Course (code-name)"];
+  const exists = bookmarks.findIndex(b => b["IITB Course (code-name)"] === code);
+  if (exists >= 0) {
+    bookmarks.splice(exists, 1);
+  } else {
+    bookmarks.push(item);
+  }
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  renderBookmarks();
+  renderTable(currentFiltered.length > 0 ? currentFiltered : mappings);
+}
+
+function isBookmarked(courseCode) {
+  const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+  return bookmarks.some(b => b["IITB Course (code-name)"] === courseCode);
+}
+
+function renderBookmarks() {
+  const list = document.getElementById("bookmarks-list");
+  const section = document.getElementById("bookmarks-section");
+  if (!list || !section) return;
+  const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+  if (bookmarks.length === 0) {
+    section.style.display = "none";
+    return;
+  }
+  section.style.display = "block";
+  list.innerHTML = bookmarks.map(item => `
+    <div class="bookmark-item" onclick="viewCourse('${(item["IITB Course (code-name)"] || "").replace(/'/g, "\\'")}')">
+      <span>${item["IITB Course (code-name)"] || "NA"}</span>
+      <span style="color:#888; font-size:12px;">${item["Foreign University Name"] || "NA"}</span>
+      <button class="remove-bookmark" onclick="toggleBookmark(mappings.find(m=>m['IITB Course (code-name)']==='${(item["IITB Course (code-name)"] || "").replace(/'/g, "\\'")}')  || ${JSON.stringify(item).replace(/"/g, '&quot;')}, event)">Remove</button>
+    </div>
+  `).join("");
+}
+
+// Credit calculator functions
+function updateCreditCalculator() {
+  const iitbTotal = selectedCourses.reduce((sum, item) => sum + (parseFloat(item["IITB Course Credits"]) || 0), 0);
+  const foreignTotal = selectedCourses.reduce((sum, item) => sum + (parseFloat(item["Credits(Foreign Course)"]) || 0), 0);
+  document.getElementById("selected-count").textContent = selectedCourses.length;
+  document.getElementById("total-iitb-credits").textContent = iitbTotal;
+  document.getElementById("total-foreign-credits").textContent = foreignTotal;
+  document.getElementById("credit-calculator").style.display = selectedCourses.length > 0 ? "block" : "none";
+}
+
+function toggleCourseSelection(item, checkbox) {
+  if (checkbox.checked) {
+    if (!selectedCourses.find(c => c["IITB Course (code-name)"] === item["IITB Course (code-name)"])) {
+      selectedCourses.push(item);
+    }
+  } else {
+    selectedCourses = selectedCourses.filter(c => c["IITB Course (code-name)"] !== item["IITB Course (code-name)"]);
+  }
+  updateCreditCalculator();
+}
+
 // Render the main table with results (Serial Number included)
 function renderTable(filtered) {
   const tbody = document.querySelector("#results-table tbody");
   const thead = document.querySelector("#results-table thead");
   tbody.innerHTML = "";
   currentFiltered = filtered || [];
+  selectedCourses = [];
+  updateCreditCalculator();
   if (!filtered || filtered.length === 0) {
     if (thead) thead.style.display = "none";
     const row = document.createElement("tr");
-    row.innerHTML = `<td colspan="6" style="text-align:center; padding:20px; font-size:16px; color:#555;">No such mappings have been done by students from previous batches</td>`;
+    row.innerHTML = `<td colspan="7" style="text-align:center; padding:20px; font-size:16px; color:#555;">No such mappings have been done by students from previous batches</td>`;
     tbody.appendChild(row);
     return;
   }
   if (thead) thead.style.display = "";
   filtered.forEach((item, index) => {
+    const bookmarked = isBookmarked(item["IITB Course (code-name)"]);
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${index + 1}</td>
+      <td><input type="checkbox" class="course-checkbox" onchange="toggleCourseSelection(mappings.find(m=>m['IITB Course (code-name)']==='${(item["IITB Course (code-name)"] || "").replace(/'/g, "\\'")}') || this.closest('tr').dataset, this)" /></td>
       <td>${item["IITB Course (code-name)"] || "NA"}</td>
       <td>${item["Department of Student"] || "NA"}</td>
       <td>${item["Foreign University Name"] || "NA"}</td>
       <td>${item["Country"] || "NA"}</td>
       <td>${item["Foreign Course (code-name)"] || "NA"}</td>
     `;
-    row.addEventListener("click", () => {
+    row.style.cursor = "pointer";
+    row.addEventListener("click", (e) => {
+      if (e.target.type === "checkbox" || e.target.classList.contains("bookmark-btn")) return;
+      addToRecentlyViewed(item);
       localStorage.setItem("selectedMapping", JSON.stringify(item));
       window.location.href = "detail.html";
     });
@@ -255,6 +361,7 @@ function formatDescription(desc) {
 if (window.location.pathname.includes("detail.html")) {
   const mapping = JSON.parse(localStorage.getItem("selectedMapping") || "null");
   if (mapping) {
+    addToRecentlyViewed(mapping);
     document.getElementById("iitb-heading").textContent = mapping["IITB Course (code-name)"] || "IITB Course";
     document.getElementById("foreign-heading").textContent = mapping["Foreign Course (code-name)"] || "Foreign Course";
     const tbody = document.querySelector("#detail-table tbody");
@@ -281,6 +388,19 @@ if (window.location.pathname.includes("detail.html")) {
           <td>${mapping["Credits(Foreign Course)"] || "NA"}</td>
         </tr>
       `;
+    }
+    const bookmarkBtn = document.getElementById("bookmarkBtn");
+    if (bookmarkBtn) {
+      const updateBtn = () => {
+        const bookmarked = isBookmarked(mapping["IITB Course (code-name)"]);
+        bookmarkBtn.textContent = bookmarked ? "Remove Bookmark" : "Bookmark";
+        bookmarkBtn.style.background = bookmarked ? "#e74c3c" : "#2c3e50";
+      };
+      updateBtn();
+      bookmarkBtn.addEventListener("click", () => {
+        toggleBookmark(mapping);
+        updateBtn();
+      });
     }
   }
 }

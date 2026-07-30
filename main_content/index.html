@@ -48,9 +48,15 @@
   </div>
 
   <div id="results-section">
+    <div id="credit-calculator" style="display:none; text-align:center; margin:15px auto; padding:10px; background:#fff; width:90%; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      <strong>Selected: </strong><span id="selected-count">0</span> courses |
+      <strong>IITB Credits: </strong><span id="total-iitb-credits">0</span> |
+      <strong>Foreign Credits: </strong><span id="total-foreign-credits">0</span>
+    </div>
     <table id="results-table">
       <thead>
         <tr>
+          <th>Select</th>
           <th>IITB Course Code</th>
           <th>Department</th>
           <th>Foreign University</th>
@@ -62,6 +68,16 @@
         <!-- Results injected by JS -->
       </tbody>
     </table>
+  </div>
+
+  <div id="bookmarks-section" style="display:none; width:90%; margin:20px auto; background:#fff; padding:15px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+    <h3 style="margin:0 0 10px 0; color:#2c3e50;">Bookmarked Courses</h3>
+    <div id="bookmarks-list"></div>
+  </div>
+
+  <div id="recent-section" style="display:none; width:90%; margin:20px auto; background:#fff; padding:15px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+    <h3 style="margin:0 0 10px 0; color:#2c3e50;">Recently Viewed</h3>
+    <div id="recent-list"></div>
   </div>
 
   <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
