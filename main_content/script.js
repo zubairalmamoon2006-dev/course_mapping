@@ -222,8 +222,10 @@ function renderBookmarks() {
 // Credit calculator functions
 function updateCreditCalculator() {
   const iitbTotal = selectedCourses.reduce((sum, item) => sum + (parseFloat(item["IITB Course Credits"]) || 0), 0);
+  const foreignTotal = selectedCourses.reduce((sum, item) => sum + (parseFloat(item["Credits(Foreign Course)"]) || 0), 0);
   document.getElementById("selected-count").textContent = selectedCourses.length;
   document.getElementById("total-iitb-credits").textContent = iitbTotal;
+  document.getElementById("total-foreign-credits").textContent = foreignTotal;
   document.getElementById("credit-calculator").style.display = selectedCourses.length > 0 ? "block" : "none";
 }
 
