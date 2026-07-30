@@ -1,5 +1,6 @@
 // Store all course mapping entries
 let mappings = [];
+let currentFiltered = [];
 
 // Dynamically update table headers to add Serial Number column
 function updateTableHeaders() {
@@ -24,6 +25,7 @@ fetch("overall_mappings.json")
     populateDropdowns();
     updateTableHeaders();
     restoreState();
+    setupAutocomplete();
   })
   .catch(err => console.error("Error loading JSON file:", err));
 
@@ -88,11 +90,84 @@ function populateCountryDropdown() {
   });
 }
 
+// Setup autocomplete for course code input
+function setupAutocomplete() {
+  const input = document.getElementById("course");
+  const list = document.getElementById("autocomplete-list");
+  if (!input || !list) return;
+
+  const courseCodes = [
+    ...new Set(
+      mappings.map(item => (item["IITB Course (code-name)"] || "").trim()).filter(c => c !== "")
+    ),
+  ].sort((a, b) => a.localeCompare(b));
+
+  input.addEventListener("input", function () {
+    const val = this.value.trim().toLowerCase();
+    list.innerHTML = "";
+    if (val.length === 0) {
+      list.style.display = "none";
+      return;
+    }
+    const matches = courseCodes.filter(code => code.toLowerCase().includes(val)).slice(0, 10);
+    if (matches.length === 0) {
+      list.style.display = "none";
+      return;
+    }
+    matches.forEach(code => {
+      const item = document.createElement("div");
+      item.className = "autocomplete-item";
+      item.textContent = code;
+      item.addEventListener("click", function () {
+        input.value = code;
+        list.innerHTML = "";
+        list.style.display = "none";
+      });
+      list.appendChild(item);
+    });
+    list.style.display = "block";
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!input.contains(e.target) && !list.contains(e.target)) {
+      list.style.display = "none";
+    }
+  });
+}
+
+// Export filtered results to CSV
+function exportToCSV() {
+  const dataToExport = currentFiltered.length > 0 ? currentFiltered : mappings;
+  if (dataToExport.length === 0) {
+    alert("No data to export");
+    return;
+  }
+  const headers = ["S.No.", "IITB Course Code", "Department", "Foreign University", "Country", "Foreign Course Code"];
+  const rows = dataToExport.map((item, index) => [
+    index + 1,
+    item["IITB Course (code-name)"] || "NA",
+    item["Department of Student"] || "NA",
+    item["Foreign University Name"] || "NA",
+    item["Country"] || "NA",
+    item["Foreign Course (code-name)"] || "NA"
+  ]);
+  const csvContent = [headers, ...rows]
+    .map(row => row.map(cell => `"${cell}"`).join(","))
+    .join("\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "course_mappings.csv";
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
 // Render the main table with results (Serial Number included)
 function renderTable(filtered) {
   const tbody = document.querySelector("#results-table tbody");
   const thead = document.querySelector("#results-table thead");
   tbody.innerHTML = "";
+  currentFiltered = filtered || [];
   if (!filtered || filtered.length === 0) {
     if (thead) thead.style.display = "none";
     const row = document.createElement("tr");
@@ -149,8 +224,14 @@ if (document.getElementById("resetBtn")) {
     document.getElementById('country').selectedIndex = 0;
     localStorage.removeItem('filters');
     localStorage.removeItem('filteredResults');
+    currentFiltered = [];
     renderTable(mappings);
   });
+}
+
+// Export to CSV button handler
+if (document.getElementById("exportBtn")) {
+  document.getElementById("exportBtn").addEventListener("click", exportToCSV);
 }
 
 // Restore previous filters & results on page load

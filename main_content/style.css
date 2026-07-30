@@ -50,6 +50,41 @@ input, select {
   width: 200px;
 }
 
+/* Autocomplete styles */
+.autocomplete-wrapper {
+  position: relative;
+}
+
+.autocomplete-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 105px;
+  width: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.autocomplete-item {
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover {
+  background: #e8f4f8;
+}
+
 /* Submit button centered below both rows */
 .filter-button {
   text-align: center;

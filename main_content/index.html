@@ -11,9 +11,10 @@
   <div class="filter-section">
     <div class="filter-row">
       
-      <div class="filter-item">
+      <div class="filter-item autocomplete-wrapper">
         <label for="course">Course Code</label>
-        <input type="text" id="course" placeholder="Enter IITB Course Code" />
+        <input type="text" id="course" placeholder="Enter IITB Course Code" autocomplete="off" />
+        <div id="autocomplete-list" class="autocomplete-list"></div>
       </div>
       <div class="filter-item">
         <label for="department">Department</label>
@@ -42,6 +43,7 @@
       <button id="backBtn">Return to Main Page</button>
       <button id="submitBtn">Submit</button>
       <button id="resetBtn">Reset Filters</button>
+      <button id="exportBtn">Export to CSV</button>
     </div>
   </div>
 
