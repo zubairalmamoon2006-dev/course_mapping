@@ -89,6 +89,11 @@ function setupAutocomplete() {
     ),
   ].sort((a, b) => a.localeCompare(b));
 
+  function getPrefix(code) {
+    const match = code.match(/^([A-Za-z]+)/);
+    return match ? match[1].toLowerCase() : code.toLowerCase();
+  }
+
   input.addEventListener("input", function () {
     const val = this.value.trim().toLowerCase();
     list.innerHTML = "";
@@ -96,7 +101,7 @@ function setupAutocomplete() {
       list.style.display = "none";
       return;
     }
-    const matches = courseCodes.filter(code => code.toLowerCase().startsWith(val)).slice(0, 10);
+    const matches = courseCodes.filter(code => getPrefix(code).startsWith(val)).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     if (matches.length === 0) {
       list.style.display = "none";
       return;
