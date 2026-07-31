@@ -418,9 +418,9 @@ tbody tr:hover td:first-child {
   font-size: 14px;
   font-weight: 600;
   border-radius: 10px;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #B25A1F, #9a4a18);
   color: white;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 4px 12px rgba(178, 90, 31, 0.35);
   transition: all 0.2s ease;
 }
 
