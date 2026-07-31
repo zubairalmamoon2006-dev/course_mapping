@@ -390,7 +390,7 @@ if (window.location.pathname.includes("detail.html")) {
       const updateBtn = () => {
         const bookmarked = isBookmarked(mapping["IITB Course (code-name)"]);
         bookmarkBtn.textContent = bookmarked ? "Added to Bookmark" : "Bookmark";
-        bookmarkBtn.style.background = bookmarked ? "#27ae60" : "#2c3e50";
+        bookmarkBtn.style.background = bookmarked ? "#27ae60" : "#B25A1F";
       };
       updateBtn();
       bookmarkBtn.addEventListener("click", () => {
