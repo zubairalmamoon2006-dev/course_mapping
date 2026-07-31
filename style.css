@@ -18,13 +18,13 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 40px;
+  padding: 5px 40px;
   color: #000000;
 }
 
 .header-left img {
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   object-fit: contain;
 }
 
@@ -40,8 +40,8 @@ header {
 }
 
 .header-right img {
-  height: 70px;
-  width: 70px;
+  height: 50px;
+  width: 50px;
   object-fit: contain;
   cursor: pointer;
 }
