@@ -63,6 +63,8 @@ h1 {
   padding: 30px;
   margin-bottom: 25px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 100;
 }
 
 .filter-row {
@@ -134,7 +136,7 @@ input::placeholder {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
-  z-index: 1000;
+  z-index: 9999;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
