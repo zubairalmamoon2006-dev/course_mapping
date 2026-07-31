@@ -10,7 +10,7 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #2d4a90 0%, #3f5db0 50%, #5170c0 100%);
+  background: linear-gradient(135deg, #002c4a 0%, #003C5F 50%, #005580 100%);
   min-height: 100vh;
   color: #333;
 }
@@ -260,7 +260,7 @@ table {
 }
 
 th {
-  background: linear-gradient(135deg, #1e293b, #334155);
+  background: #606163;
   color: white;
   font-weight: 600;
   font-size: 13px;
