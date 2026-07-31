@@ -10,22 +10,23 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #002c4a 0%, #003C5F 50%, #005580 100%);
+  background: linear-gradient(135deg, #8D9CCE 0%, #485FA8 100%);
   min-height: 100vh;
   color: #333;
 }
 
 /* HEADER */
 .page-header {
-  background: rgba(255, 255, 255, 0.95);
+  background: #DFE8F5;
   backdrop-filter: blur(10px);
   padding: 30px 20px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-bottom: 4px solid #485FA8;
 }
 
 .page-header h1 {
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 700;
   color: #1a2332;
   margin: 0;
@@ -188,14 +189,14 @@ button {
 }
 
 #submitBtn {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: white;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+  background: linear-gradient(135deg, #9FB6E0, #8099cc);
+  color: #1a1a2e;
+  box-shadow: 0 4px 12px rgba(159, 182, 224, 0.35);
 }
 
 #submitBtn:hover {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.45);
+  background: linear-gradient(135deg, #8099cc, #6a85bb);
+  box-shadow: 0 6px 16px rgba(159, 182, 224, 0.45);
   transform: translateY(-1px);
 }
 
@@ -209,14 +210,14 @@ button {
 }
 
 #exportBtn {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+  background: linear-gradient(135deg, #F0D1DA, #e0b8c4);
+  color: #333;
+  box-shadow: 0 4px 12px rgba(240, 209, 218, 0.35);
 }
 
 #exportBtn:hover {
-  background: linear-gradient(135deg, #059669, #047857);
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
+  background: linear-gradient(135deg, #e0b8c4, #d4a0b0);
+  box-shadow: 0 6px 16px rgba(240, 209, 218, 0.45);
   transform: translateY(-1px);
 }
 

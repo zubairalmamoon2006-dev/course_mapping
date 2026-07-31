@@ -16,6 +16,11 @@ fetch("overall_mappings.json")
   })
   .catch(err => console.error("Error loading JSON file:", err));
 
+window.addEventListener("pageshow", function () {
+  renderBookmarks();
+  renderRecentlyViewed();
+});
+
 // Populate all filter dropdowns
 function populateDropdowns() {
   populateUniversityDropdown();

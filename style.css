@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #eaf3f5;
+  background: linear-gradient(135deg, #A4F5F5 0%, #6FD1D1 100%);
   color: #003366;
 }
 
@@ -20,6 +20,7 @@ header {
   justify-content: space-between;
   padding: 5px 40px;
   color: #000000;
+  border-bottom: 3px solid #003C5F;
 }
 
 .header-left img {
@@ -58,7 +59,7 @@ header {
 .banner-overlay {
   background-color: rgba(0, 43, 92, 0.4);
   width: 100%;
-  padding: 50px 20px;
+  padding: 70px 20px 100px 20px;
   text-align: center;
   color: white;
 }
@@ -69,18 +70,21 @@ header {
 }
 
 .banner-overlay button {
-  background-color: #0073e6;
-  color: white;
+  background-color: #DFF2F2;
+  color: #003C5F;
   border: none;
   padding: 14px 32px;
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(223, 242, 242, 0.4);
 }
 
 .banner-overlay button:hover {
-  background-color: #3399ff;
+  background-color: #C9F2F2;
+  box-shadow: 0 6px 20px rgba(0, 115, 230, 0.6);
+  transform: scale(1.08);
 }
 
 /* MAIN CONTENT */
@@ -88,7 +92,7 @@ header {
   width: 100%;
   margin: 0; /* remove white gap */
   padding: 40px; /* maintain inner spacing */
-  background-color: #56A4AF;
+  background: linear-gradient(135deg, #A4F5F5 0%, #6FD1D1 100%);
 }
 
 
@@ -96,37 +100,52 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
+  margin-top: 20px;
   margin-bottom: 40px;
 }
 
 .info-box {
-  background-color: #dceff1;
+  background-color: #CAEDED;
   border-radius: 12px;
   flex: 1;
   min-width: 280px;
-  padding: 24px;
+  padding: 30px 24px;
   text-align: center;
   color: #00254F;
   font-size: 1.05rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-icon {
+  margin-bottom: 4px;
 }
 
 .instructions {
-  background-color: #c9e8ec;
-  padding: 25px 30px;
+  background-color: #E3E4E6;
+  padding: 15px 20px;
   border-radius: 12px;
   margin-bottom: 25px;
 }
 
 .instructions h3 {
   text-align: center;
+  margin-bottom: 10px;
   margin-bottom: 15px;
 }
 
 .instructions ol {
   margin-left: 20px;
-  line-height: 1.6;
+  line-height: 1.4;
+  padding-left: 20px;
+}
+
+.instructions ol li {
+  margin-bottom: 4px;
 }
 
 .footer-note {
