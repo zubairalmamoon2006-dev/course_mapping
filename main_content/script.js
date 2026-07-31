@@ -23,13 +23,18 @@ function populateDropdowns() {
   populateCountryDropdown();
 }
 
-// Populate Foreign University dropdown
-function populateUniversityDropdown() {
+// Populate Foreign University dropdown (filtered by country)
+function populateUniversityDropdown(countryFilter) {
   const uniSelect = document.getElementById("university");
   if (!uniSelect) return;
+  const prev = uniSelect.value;
+  let filtered = mappings;
+  if (countryFilter) {
+    filtered = mappings.filter(item => (item["Country"] || "").trim() === countryFilter);
+  }
   const universities = [
     ...new Set(
-      mappings.map(item => (item["Foreign University Name"] || "").trim()).filter(u => u !== "")
+      filtered.map(item => (item["Foreign University Name"] || "").trim()).filter(u => u !== "")
     ),
   ].sort((a, b) => a.localeCompare(b));
   uniSelect.innerHTML = `<option value="">All</option>`;
@@ -39,6 +44,7 @@ function populateUniversityDropdown() {
     opt.textContent = u;
     uniSelect.appendChild(opt);
   });
+  if (universities.includes(prev)) uniSelect.value = prev;
 }
 
 // Populate Department dropdown
@@ -74,6 +80,9 @@ function populateCountryDropdown() {
     opt.value = c;
     opt.textContent = c;
     countrySelect.appendChild(opt);
+  });
+  countrySelect.addEventListener("change", function () {
+    populateUniversityDropdown(this.value);
   });
 }
 
