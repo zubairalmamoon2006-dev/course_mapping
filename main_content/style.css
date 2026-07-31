@@ -180,12 +180,12 @@ button {
 }
 
 #backBtn {
-  background: #f3f4f6;
-  color: #374151;
+  background: #C4C4C4;
+  color: #1a1a2e;
 }
 
 #backBtn:hover {
-  background: #e5e7eb;
+  background: #b0b0b0;
 }
 
 #submitBtn {
@@ -201,12 +201,12 @@ button {
 }
 
 #resetBtn {
-  background: #f3f4f6;
-  color: #374151;
+  background: #C4C4C4;
+  color: #1a1a2e;
 }
 
 #resetBtn:hover {
-  background: #e5e7eb;
+  background: #b0b0b0;
 }
 
 #exportBtn {
