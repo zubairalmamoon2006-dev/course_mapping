@@ -96,7 +96,7 @@ function setupAutocomplete() {
       list.style.display = "none";
       return;
     }
-    const matches = courseCodes.filter(code => code.toLowerCase().includes(val)).slice(0, 10);
+    const matches = courseCodes.filter(code => code.toLowerCase().startsWith(val)).slice(0, 10);
     if (matches.length === 0) {
       list.style.display = "none";
       return;
