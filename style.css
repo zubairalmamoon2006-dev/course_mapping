@@ -14,17 +14,17 @@ body {
 /* HEADER */
 header {
   width: 100%;
-  background-color: #00254F;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 40px;
-  color: white;
+  color: #000000;
 }
 
 .header-left img {
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 80px;
   object-fit: contain;
 }
 
