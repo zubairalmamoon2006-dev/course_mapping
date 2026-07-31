@@ -1,7 +1,6 @@
 // Store all course mapping entries
 let mappings = [];
 let currentFiltered = [];
-let selectedCourses = [];
 
 // Load JSON dataset, populate dropdowns, restore filters
 fetch("overall_mappings.json")
@@ -13,12 +12,14 @@ fetch("overall_mappings.json")
     setupAutocomplete();
     renderRecentlyViewed();
     renderBookmarks();
+    updateCreditCalculator();
   })
   .catch(err => console.error("Error loading JSON file:", err));
 
 window.addEventListener("pageshow", function () {
   renderBookmarks();
   renderRecentlyViewed();
+  updateCreditCalculator();
 });
 
 // Populate all filter dropdowns
@@ -143,12 +144,12 @@ function setupAutocomplete() {
 
 // Export filtered results to Excel
 function exportToExcel() {
-  const dataToExport = currentFiltered.length > 0 ? currentFiltered : mappings;
-  if (dataToExport.length === 0) {
-    alert("No data to export");
+  const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+  if (bookmarks.length === 0) {
+    alert("No bookmarked courses to export");
     return;
   }
-  const rows = dataToExport.map((item, index) => ({
+  const rows = bookmarks.map((item, index) => ({
     "S.No.": index + 1,
     "IITB Course Code": item["IITB Course (code-name)"] || "NA",
     "Department": item["Department of Student"] || "NA",
@@ -158,8 +159,8 @@ function exportToExcel() {
   }));
   const ws = XLSX.utils.json_to_sheet(rows);
   const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, "Course Mappings");
-  XLSX.writeFile(wb, "course_mappings.xlsx");
+  XLSX.utils.book_append_sheet(wb, ws, "Bookmarked Courses");
+  XLSX.writeFile(wb, "bookmarked_courses.xlsx");
 }
 
 // Recently viewed functions
@@ -211,6 +212,7 @@ function toggleBookmark(item, event) {
   }
   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   renderBookmarks();
+  updateCreditCalculator();
   renderTable(currentFiltered.length > 0 ? currentFiltered : mappings);
 }
 
@@ -231,8 +233,8 @@ function renderBookmarks() {
   section.style.display = "block";
   list.innerHTML = bookmarks.map(item => `
     <div class="bookmark-item" onclick="viewCourse('${(item["IITB Course (code-name)"] || "").replace(/'/g, "\\'")}')">
-      <span>${item["IITB Course (code-name)"] || "NA"}</span>
-      <span style="color:#888; font-size:12px;">${item["Foreign University Name"] || "NA"}</span>
+      <span class="bookmark-course">${item["IITB Course (code-name)"] || "NA"}</span>
+      <span class="bookmark-uni">${item["Foreign University Name"] || "NA"}</span>
       <button class="remove-bookmark" onclick="toggleBookmark(mappings.find(m=>m['IITB Course (code-name)']==='${(item["IITB Course (code-name)"] || "").replace(/'/g, "\\'")}')  || ${JSON.stringify(item).replace(/"/g, '&quot;')}, event)">Remove</button>
     </div>
   `).join("");
@@ -240,21 +242,11 @@ function renderBookmarks() {
 
 // Credit calculator functions
 function updateCreditCalculator() {
-  const iitbTotal = selectedCourses.reduce((sum, item) => sum + (parseFloat(item["IITB Course Credits"]) || 0), 0);
-  document.getElementById("selected-count").textContent = selectedCourses.length;
+  const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+  const iitbTotal = bookmarks.reduce((sum, item) => sum + (parseFloat(item["IITB Course Credits"]) || 0), 0);
+  document.getElementById("selected-count").textContent = bookmarks.length;
   document.getElementById("total-iitb-credits").textContent = iitbTotal;
-  document.getElementById("credit-calculator").style.display = selectedCourses.length > 0 ? "block" : "none";
-}
-
-function toggleCourseSelection(item, checkbox) {
-  if (checkbox.checked) {
-    if (!selectedCourses.find(c => c["IITB Course (code-name)"] === item["IITB Course (code-name)"])) {
-      selectedCourses.push(item);
-    }
-  } else {
-    selectedCourses = selectedCourses.filter(c => c["IITB Course (code-name)"] !== item["IITB Course (code-name)"]);
-  }
-  updateCreditCalculator();
+  document.getElementById("credit-calculator").style.display = bookmarks.length > 0 ? "block" : "none";
 }
 
 // Render the main table with results (Serial Number included)
@@ -263,12 +255,11 @@ function renderTable(filtered) {
   const thead = document.querySelector("#results-table thead");
   tbody.innerHTML = "";
   currentFiltered = filtered || [];
-  selectedCourses = [];
   updateCreditCalculator();
   if (!filtered || filtered.length === 0) {
     if (thead) thead.style.display = "none";
     const row = document.createElement("tr");
-    row.innerHTML = `<td colspan="6" style="text-align:center; padding:40px 20px; font-size:15px; color:#64748b;">No such mappings have been done by students from previous batches</td>`;
+    row.innerHTML = `<td colspan="5" style="text-align:center; padding:40px 20px; font-size:15px; color:#64748b;">No such mappings have been done by students from previous batches</td>`;
     tbody.appendChild(row);
     return;
   }
@@ -277,7 +268,6 @@ function renderTable(filtered) {
     const bookmarked = isBookmarked(item["IITB Course (code-name)"]);
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td><input type="checkbox" class="course-checkbox" onchange="toggleCourseSelection(mappings.find(m=>m['IITB Course (code-name)']==='${(item["IITB Course (code-name)"] || "").replace(/'/g, "\\'")}') || this.closest('tr').dataset, this)" /></td>
       <td>${item["IITB Course (code-name)"] || "NA"}</td>
       <td>${item["Department of Student"] || "NA"}</td>
       <td>${item["Foreign University Name"] || "NA"}</td>
@@ -286,7 +276,7 @@ function renderTable(filtered) {
     `;
     row.style.cursor = "pointer";
     row.addEventListener("click", (e) => {
-      if (e.target.type === "checkbox" || e.target.classList.contains("bookmark-btn")) return;
+      if (e.target.classList.contains("bookmark-btn")) return;
       addToRecentlyViewed(item);
       localStorage.setItem("selectedMapping", JSON.stringify(item));
       window.location.href = "detail.html";
