@@ -128,8 +128,8 @@ input::placeholder {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
-  width: 240px;
-  max-height: 240px;
+  width: 320px;
+  max-height: 400px;
   overflow-y: auto;
   background: #fff;
   border: 1px solid #e5e7eb;
