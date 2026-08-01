@@ -18,13 +18,18 @@ body {
 /* HEADER */
 .page-header {
   background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 40px;
+  position: relative;
+  padding: 15px 40px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   border-bottom: 3px solid #003C5F;
+}
+
+.header-left {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .header-left img {
@@ -34,7 +39,7 @@ body {
 }
 
 .header-center {
-  flex: 1;
+  text-align: center;
 }
 
 .page-header h1 {
@@ -43,6 +48,7 @@ body {
   color: #1a2332;
   margin: 0;
   letter-spacing: -0.5px;
+  text-align: center;
 }
 
 .page-header .subtitle {
@@ -50,17 +56,22 @@ body {
   color: #6b7280;
   margin-top: 6px;
   font-weight: 400;
+  text-align: center;
 }
 
 .header-right {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .header-right h2 {
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   color: #000000;
 }
 
