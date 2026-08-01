@@ -17,12 +17,24 @@ body {
 
 /* HEADER */
 .page-header {
-  background: #DFE8F5;
-  backdrop-filter: blur(10px);
-  padding: 30px 20px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 40px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  border-bottom: 4px solid #485FA8;
+  border-bottom: 3px solid #003C5F;
+}
+
+.header-left img {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+}
+
+.header-center {
+  flex: 1;
 }
 
 .page-header h1 {
@@ -38,6 +50,25 @@ body {
   color: #6b7280;
   margin-top: 6px;
   font-weight: 400;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-right h2 {
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #000000;
+}
+
+.header-right img {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+  cursor: pointer;
 }
 
 h1 {
