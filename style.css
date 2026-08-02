@@ -291,12 +291,17 @@ footer span {
     padding: 10px 15px;
   }
 
-  .header-left, .header-right h2 {
+  .header-right h2 {
     display: none;
   }
 
   .header-right {
     flex: 0;
+  }
+
+  .header-left img {
+    height: 30px;
+    width: 30px;
   }
 
   .header-right img {
