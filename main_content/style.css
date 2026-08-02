@@ -533,7 +533,9 @@ tbody tr:hover td:first-child {
   }
 
   .header-left {
-    flex: 0 0 auto;
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
   }
 
   .header-left img {
@@ -542,7 +544,11 @@ tbody tr:hover td:first-child {
   }
 
   .header-right {
-    flex: 0 0 auto;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
   }
 
   .header-right h2 {
