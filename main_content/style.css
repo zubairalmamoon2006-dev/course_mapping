@@ -6,12 +6,17 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: auto;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
   padding: 0;
   background: linear-gradient(135deg, #8D9CCE 0%, #485FA8 100%);
   min-height: 100vh;
+  min-width: 400px;
   color: #333;
 }
 
@@ -23,6 +28,7 @@ body {
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   border-bottom: 3px solid #003C5F;
+  overflow: hidden;
 }
 
 .header-left {
@@ -40,6 +46,8 @@ body {
 
 .header-center {
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .page-header h1 {
@@ -67,6 +75,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  z-index: 1;
 }
 
 .header-right h2 {
@@ -520,21 +529,35 @@ tbody tr:hover td:first-child {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .page-header {
     padding: 12px 15px;
   }
 
-  .header-left, .header-right {
-    display: none;
+  .page-header .header-left,
+  .page-header .header-right {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .page-header {
+    display: block;
   }
 
   .header-center {
     width: 100%;
+    text-align: center;
   }
 
   .page-header h1 {
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .page-header .subtitle {
+    font-size: 13px;
   }
 
   .container {

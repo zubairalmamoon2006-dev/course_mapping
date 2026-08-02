@@ -6,9 +6,14 @@
   font-family: 'Roboto', sans-serif;
 }
 
+html {
+  overflow-x: auto;
+}
+
 body {
   background: linear-gradient(to bottom, #BFF8F8 0%, #A4F5F5 55%, #6FD1D1 100%);
   color: #003366;
+  min-width: 400px;
 }
 
 /* HEADER */
