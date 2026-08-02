@@ -23,21 +23,18 @@ body {
 /* HEADER */
 .page-header {
   background: #ffffff;
-  padding: 10px 20px;
+  position: relative;
+  padding: 15px 40px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   border-bottom: 3px solid #003C5F;
 }
 
-.header-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 5px;
-}
-
 .header-left {
-  flex: 0 0 auto;
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .header-left img {
@@ -68,7 +65,10 @@ body {
 }
 
 .header-right {
-  flex: 0 0 auto;
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -527,39 +527,32 @@ tbody tr:hover td:first-child {
 
 @media (max-width: 900px) {
   .page-header {
-    padding: 10px 15px;
+    padding: 12px 15px;
   }
 
-  .header-top {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+  .header-left, .header-right {
+    display: none !important;
   }
 
-  .header-left img {
-    height: 40px;
-    width: 40px;
-  }
-
-  .header-right img {
-    height: 35px;
-    width: 35px;
-  }
-
-  .header-right h2 {
-    font-size: 0.65rem;
+  .header-center {
+    width: 100%;
+    text-align: center;
   }
 
   .page-header h1 {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .page-header .subtitle {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .container {
     padding: 15px 10px;
+  }
+
+  h1 {
+    font-size: 22px;
   }
 
   h1 {
