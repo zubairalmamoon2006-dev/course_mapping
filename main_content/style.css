@@ -521,6 +521,22 @@ tbody tr:hover td:first-child {
 }
 
 @media (max-width: 600px) {
+  .page-header {
+    padding: 12px 15px;
+  }
+
+  .header-left, .header-right {
+    display: none;
+  }
+
+  .header-center {
+    width: 100%;
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+  }
+
   .container {
     padding: 15px 10px;
   }

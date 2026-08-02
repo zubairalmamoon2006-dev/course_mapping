@@ -280,3 +280,26 @@ footer span {
     padding-bottom: 20px;
   }
 }
+
+@media (max-width: 480px) {
+  header {
+    padding: 10px 15px;
+  }
+
+  .header-left, .header-right h2 {
+    display: none;
+  }
+
+  .header-right {
+    flex: 0;
+  }
+
+  .header-right img {
+    height: 45px;
+    width: 45px;
+  }
+
+  .banner-overlay h1 {
+    font-size: 1.5rem;
+  }
+}
