@@ -430,10 +430,13 @@ tbody tr:hover td:first-child {
 #detail-section {
   max-width: 1000px;
   margin: 0 auto 20px auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 #detail-table {
   width: 100%;
+  min-width: 600px;
 }
 
 #detail-table th {
@@ -622,18 +625,20 @@ tbody tr:hover td:first-child {
   }
 
   table {
-    width: 100%;
+    width: auto;
+    min-width: 700px;
     font-size: 12px;
   }
 
   th, td {
     padding: 8px 6px;
-    word-break: break-word;
+    white-space: nowrap;
     font-size: 11px;
   }
 
   #results-section {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .recent-item,
@@ -645,8 +650,7 @@ tbody tr:hover td:first-child {
 
   #detail-table td {
     font-size: 13px !important;
-    display: block;
-    width: 100%;
+    white-space: normal;
   }
 
   #detail-table td:first-child {
