@@ -16,7 +16,7 @@ body {
   padding: 0;
   background: linear-gradient(135deg, #8D9CCE 0%, #485FA8 100%);
   min-height: 100vh;
-  min-width: 400px;
+  min-width: 500px;
   color: #333;
 }
 
@@ -33,7 +33,9 @@ body {
 }
 
 .header-left {
-  flex: 0 0 auto;
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .header-left img {
@@ -43,6 +45,7 @@ body {
 }
 
 .header-center {
+  flex: 1;
   text-align: center;
 }
 
@@ -64,9 +67,10 @@ body {
 }
 
 .header-right {
-  flex: 0 0 auto;
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 10px;
 }
 
@@ -74,6 +78,7 @@ body {
   font-weight: 500;
   font-size: 0.85rem;
   color: #000000;
+  white-space: nowrap;
 }
 
 .header-right img {
@@ -523,33 +528,44 @@ tbody tr:hover td:first-child {
 
 @media (max-width: 900px) {
   .page-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
+    padding: 10px 10px;
+    gap: 6px;
+  }
+
+  .header-left {
+    flex: 0 0 auto;
   }
 
   .header-left img {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .header-right {
+    flex: 0 0 auto;
+  }
+
+  .header-right h2 {
+    font-size: 0.45rem;
+    display: block;
   }
 
   .header-right img {
-    height: 35px;
-    width: 35px;
+    height: 26px;
+    width: 26px;
   }
 
   .header-center {
     flex: 1;
-    text-align: center;
+    min-width: 0;
   }
 
   .page-header h1 {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .page-header .subtitle {
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .container {
