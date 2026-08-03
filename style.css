@@ -6,14 +6,9 @@
   font-family: 'Roboto', sans-serif;
 }
 
-html {
-  overflow-x: auto;
-}
-
 body {
   background: linear-gradient(to bottom, #BFF8F8 0%, #A4F5F5 55%, #6FD1D1 100%);
   color: #003366;
-  min-width: 400px;
 }
 
 /* HEADER */
@@ -29,8 +24,8 @@ header {
 }
 
 .header-left img {
-  height: 60px;
-  width: 60px;
+  height: 80px;
+  width: 80px;
   object-fit: contain;
 }
 
@@ -46,8 +41,8 @@ header {
 }
 
 .header-right img {
-  height: 50px;
-  width: 50px;
+  height: 70px;
+  width: 70px;
   object-fit: contain;
   cursor: pointer;
 }
@@ -139,7 +134,6 @@ header {
 
 .instructions h3 {
   text-align: center;
-  margin-bottom: 10px;
   margin-bottom: 15px;
 }
 
@@ -283,33 +277,5 @@ footer span {
     padding: 0 20px;
     padding-top: 20px;
     padding-bottom: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  header {
-    padding: 10px 15px;
-  }
-
-  .header-right h2 {
-    display: none;
-  }
-
-  .header-right {
-    flex: 0;
-  }
-
-  .header-left img {
-    height: 30px;
-    width: 30px;
-  }
-
-  .header-right img {
-    height: 45px;
-    width: 45px;
-  }
-
-  .banner-overlay h1 {
-    font-size: 1.5rem;
   }
 }
