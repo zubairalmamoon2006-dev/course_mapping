@@ -21723,5 +21723,71 @@
     "IITB Course Descriptions": "",
     "Country": "Switzerland",
     "IITB Course Credits": ""
+  },
+  {
+    "IITB Course (code-name)": "CE 343 - Water Resources Engineering",
+    "Foreign Course (code-name)": "CEE 350 - Water Resources Engineering",
+    "Credits(Foreign Course)": 3,
+    "Department of Student": "Civil Engineering",
+    "Foreign University Name": "University of Illinois Urbana-Champaign",
+    "Foreign Course Description": "Quantitative hydrology and hydraulic engineering for water use/control systems; precipitation, infiltration, evapotranspiration, groundwater flow, runoff and streamflow; flow routing; open-channel flow; water distribution and drainage systems; dams, reservoirs, hydropower, culverts, weirs and spillways; water-resources planning and economics.",
+    "IITB Course Descriptions": "Precipitation, abstractions, infiltration, runoff, watersheds, basin characteristics, streamflows and runoff yield; hydrometry; direct runoff/unit hydrographs; floods, droughts, frequency analysis and flood routing; groundwater hydrology; planning/design of weirs, barrages, dams, spillways, reservoirs, hydropower systems and river intakes; irrigation, crop water requirements, canal layout/losses and waterlogging.",
+    "Country": "USA",
+    "IITB Course Credits": 6
+  },
+  {
+    "IITB Course (code-name)": "CE 482 - Construction Management",
+    "Foreign Course (code-name)": "CEE 320 - Construction Engineering",
+    "Credits(Foreign Course)": 3,
+    "Department of Student": "Civil Engineering",
+    "Foreign University Name": "University of Illinois Urbana-Champaign",
+    "Foreign Course Description": "Construction engineering processes including contracting and bonding, planning and scheduling, estimating and project control, productivity models and construction econometrics. Coursework/case-study work includes bid estimate development, project cash-flow analysis, economic analysis and job costing.",
+    "IITB Course Descriptions": "Construction industry organisation structure; engineering economy in construction projects; personnel, monitoring and control; work study in construction; contracting; planning tools such as Primavera and MS Project; bidding and law for engineers; value engineering; safety engineering and construction project execution/control.",
+    "Country": "USA",
+    "IITB Course Credits": 6
+  },
+  {
+    "IITB Course (code-name)": "CS 416 - Computer and Network Security",
+    "Foreign Course (code-name)": "CS 461 - Computer Security I",
+    "Credits(Foreign Course)": 4,
+    "Department of Student": "Civil Engineering",
+    "Foreign University Name": "University of Illinois Urbana-Champaign",
+    "Foreign Course Description": "Introductory computer security for systems and networks; cryptographic tools; authentication; access control; software security; web security; network security; operating-system security; threat models, attacks, vulnerabilities and defenses; secure system design and practical security principles.",
+    "IITB Course Descriptions": "Principles of secure systems; authentication and authorization/access control; cryptographic tools and protocols; key management; network-security mechanisms; system and protocol vulnerabilities; attacks and defenses; intrusion detection; secure design and practical protection of computer systems and networks.",
+    "Country": "USA",
+    "IITB Course Credits": 6
+  },
+  {
+    "IITB Course (code-name)": "CS 745 - Principles of Data and System Security",
+    "Foreign Course (code-name)": "CS 463 - Computer Security II",
+    "Credits(Foreign Course)": 4,
+    "Department of Student": "Civil Engineering",
+    "Foreign University Name": "University of Illinois Urbana-Champaign",
+    "Foreign Course Description": "Advanced computer security topics including program security, trusted base, privacy, anonymity, non-interference, information flow, confinement, advanced auditing, forensics, intrusion detection, key management and distribution, policy composition/analysis, formal specification and verification of secure systems/protocols, and applied cryptography.",
+    "IITB Course Descriptions": "Access control models including mandatory/discretionary, least privilege, role-based and attribute-based access; confidentiality, containment, isolation, privacy and anonymity; protection/confinement/virtual machines; non-interference and information-flow models; OS security and SELinux; malware analysis/countermeasures; protocol specification and verification; web/browser security; key management and cryptographic protocols.",
+    "Country": "USA",
+    "IITB Course Credits": 6
+  },
+  {
+    "IITB Course (code-name)": "CS 337 - Artificial Intelligence and Machine Learning",
+    "Foreign Course (code-name)": "ECE 448 - Artificial Intelligence",
+    "Credits(Foreign Course)": 4,
+    "Department of Student": "Civil Engineering",
+    "Foreign University Name": "University of Illinois Urbana-Champaign",
+    "Foreign Course Description": "Artificial intelligence techniques including search and game playing, knowledge representation and reasoning, planning, probabilistic inference, machine learning, neural networks, natural language processing, computer vision, robotics, and social/ethical aspects of AI systems.",
+    "IITB Course Descriptions": "Search methods including uninformed, A*, adversarial and local search; planning with Markov decision problems, value iteration and policy iteration; probabilistic reasoning with Bayes nets; supervised learning; unsupervised learning; NLP, robotics, computer vision and multi-agent systems.",
+    "Country": "USA",
+    "IITB Course Credits": 6
+  },
+  {
+    "IITB Course (code-name)": "IE 612 - Introduction to Financial Engineering",
+    "Foreign Course (code-name)": "IE 420 - Financial Engineering",
+    "Credits(Foreign Course)": 3,
+    "Department of Student": "Civil Engineering",
+    "Foreign University Name": "University of Illinois Urbana-Champaign",
+    "Foreign Course Description": "Financial engineering methods for pricing and managing financial risk; fixed income securities; derivatives; forwards/futures/options; arbitrage and hedging; portfolio and risk management; binomial option pricing; Black-Scholes framework; computational techniques in financial markets.",
+    "IITB Course Descriptions": "Portfolio optimization, CAPM, arbitrage, hedging, derivatives, options, binomial models, Black-Scholes.",
+    "Country": "USA",
+    "IITB Course Credits": 6
   }
 ]
